@@ -8,7 +8,7 @@
   <name>Calculon</name>
   <groupId>com.madgag</groupId>
   <artifactId>calculon</artifactId>
-  <version>1.0-UNOFFICIAL-BUILD</version>
+  <version>1.0.1-UNOFFICIAL-BUILD-SNAPSHOT</version>
   <description>Calculon is a testing DSL for Google Android.</description>
   <url>http://github.com/kaeppler/calculon</url>
   
