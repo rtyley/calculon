@@ -1,9 +1,12 @@
 package com.github.calculon.story.assertion;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import junit.framework.Assert;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.calculon.CalculonStoryTest;
 
@@ -16,6 +19,14 @@ StoryTestUserInputAssertionBase<View, ActivityT> {
 		this.target = view;
 	}
 
+	public StoryTestActionAssertion<ActivityT> setText(final String text) {
+		return new StoryTestActionAssertion<ActivityT>(testCase, activity, instrumentation, new Runnable() {
+			public void run() {
+				((TextView) target).setText(text);
+			}
+		}, true);
+	}
+	
 	public StoryTestActionAssertion<ActivityT> click() {
 		return new StoryTestActionAssertion<ActivityT>(testCase, activity, instrumentation, new Runnable() {
 			public void run() {
@@ -45,4 +56,10 @@ StoryTestUserInputAssertionBase<View, ActivityT> {
 	public void isGone() {
 		assertEquals("view expected to be GONE, but wasn't", View.GONE, target.getVisibility());
 	}
+
+	public void isDisabled() {
+		assertFalse(target.getClass().getSimpleName()+" expected to be DISABLED, but wasn't", target.isEnabled());
+	}
+
+
 }
