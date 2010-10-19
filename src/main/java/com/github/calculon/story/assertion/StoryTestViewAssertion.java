@@ -2,6 +2,7 @@ package com.github.calculon.story.assertion;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import junit.framework.Assert;
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -61,5 +62,7 @@ StoryTestUserInputAssertionBase<View, ActivityT> {
 		assertFalse(target.getClass().getSimpleName()+" expected to be DISABLED, but wasn't", target.isEnabled());
 	}
 
-
+	public void isEnabled() {
+		assertTrue(target.getClass().getSimpleName()+" expected to be ENABLED, but wasn't", target.isEnabled());
+	}
 }
