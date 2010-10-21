@@ -68,6 +68,16 @@ public abstract class CalculonStoryTest<ActivityT extends Activity> extends
 
         return assertThat(view);
     }
+    
+    protected StoryTestViewAssertion<ActivityT> setUp(int viewId) {
+        Activity activity = assertCurrentActivity();
+
+        View view = activity.findViewById(viewId);
+        assertNotNull("View " + viewId + " is null in Activity "
+                + activity.getClass().getCanonicalName(), view);
+
+        return assertThat(view);
+    }
 
     private Activity assertCurrentActivity() {
         Activity activity = getCurrentActivity();

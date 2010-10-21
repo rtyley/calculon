@@ -68,4 +68,8 @@ public class StoryTestActionAssertion<ActivityT extends Activity> extends StoryT
         }
     }
 
+	public void now() {
+		performPendingAction();
+	}
+
 }

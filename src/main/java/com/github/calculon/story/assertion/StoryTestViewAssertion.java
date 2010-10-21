@@ -7,6 +7,7 @@ import junit.framework.Assert;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.github.calculon.CalculonStoryTest;
@@ -32,6 +33,14 @@ StoryTestUserInputAssertionBase<View, ActivityT> {
 		return new StoryTestActionAssertion<ActivityT>(testCase, activity, instrumentation, new Runnable() {
 			public void run() {
 				target.performClick();
+			}
+		}, true);
+	}
+	
+	public StoryTestActionAssertion<ActivityT> uncheck() {
+		return new StoryTestActionAssertion<ActivityT>(testCase, activity, instrumentation, new Runnable() {
+			public void run() {
+				((CheckBox)target).setChecked(false);
 			}
 		}, true);
 	}
@@ -65,4 +74,6 @@ StoryTestUserInputAssertionBase<View, ActivityT> {
 	public void isEnabled() {
 		assertTrue(target.getClass().getSimpleName()+" expected to be ENABLED, but wasn't", target.isEnabled());
 	}
+
+
 }
