@@ -37,10 +37,10 @@ StoryTestUserInputAssertionBase<View, ActivityT> {
 		}, true);
 	}
 	
-	public StoryTestActionAssertion<ActivityT> uncheck() {
+	public StoryTestActionAssertion<ActivityT> setChecked(final boolean checked) {
 		return new StoryTestActionAssertion<ActivityT>(testCase, activity, instrumentation, new Runnable() {
 			public void run() {
-				((CheckBox)target).setChecked(false);
+				((CheckBox)target).setChecked(checked);
 			}
 		}, true);
 	}
