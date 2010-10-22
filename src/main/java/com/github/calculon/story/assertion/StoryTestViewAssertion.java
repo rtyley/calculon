@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.Checkable;
 import android.widget.TextView;
 
 import com.github.calculon.CalculonStoryTest;
@@ -73,6 +74,10 @@ StoryTestUserInputAssertionBase<View, ActivityT> {
 
 	public void isEnabled() {
 		assertTrue(target.getClass().getSimpleName()+" expected to be ENABLED, but wasn't", target.isEnabled());
+	}
+
+	public void isChecked() {
+		assertTrue(target.getClass().getSimpleName()+" expected to be CHECKED, but wasn't", ((Checkable) target).isChecked());
 	}
 
 
