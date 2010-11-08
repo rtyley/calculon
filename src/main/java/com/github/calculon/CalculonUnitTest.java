@@ -45,6 +45,10 @@ public abstract class CalculonUnitTest<ActivityT extends Activity> extends
     }
 
     protected UnitTestViewAssertion<ActivityT> assertThat(int viewId) {
+        return setUp(viewId);
+    }
+    
+    protected UnitTestViewAssertion<ActivityT> setUp(int viewId) {
         View view = getActivity().findViewById(viewId);
         return assertThat(view);
     }

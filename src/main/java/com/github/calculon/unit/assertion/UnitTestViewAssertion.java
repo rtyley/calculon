@@ -1,11 +1,16 @@
 package com.github.calculon.unit.assertion;
 
+import static com.github.calculon.action.Actions.doClick;
+import static com.github.calculon.action.Actions.doLongClick;
+import static com.github.calculon.action.Actions.doSetChecked;
+import static com.github.calculon.action.Actions.doSetText;
 import static junit.framework.Assert.assertEquals;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.view.View;
 
 import com.github.calculon.CalculonUnitTest;
+import com.github.calculon.action.Actions;
 
 
 public class UnitTestViewAssertion<ActivityT extends Activity> extends
@@ -17,20 +22,24 @@ UnitTestUserInputAssertionBase<View, ActivityT> {
 		this.target = view;
 	}
 
+	public UnitTestActionAssertion<ActivityT> setChecked(boolean checked) {
+		return perform(doSetChecked(target, checked));
+	}
+	
+	public UnitTestActionAssertion<ActivityT> setText(String text) {
+		return perform(doSetText(target, text));
+	}
+	
 	public UnitTestActionAssertion<ActivityT> click() {
-		return new UnitTestActionAssertion<ActivityT>(testCase, activity, instrumentation, new Runnable() {
-			public void run() {
-				target.performClick();
-			}
-		}, true);
+		return perform(doClick(target));
 	}
 
 	public UnitTestActionAssertion<ActivityT> longClick() {
-		return new UnitTestActionAssertion<ActivityT>(testCase, activity, instrumentation, new Runnable() {
-			public void run() {
-				target.performLongClick();
-			}
-		}, true);
+		return perform(doLongClick(target));
+	}
+	
+	private UnitTestActionAssertion<ActivityT> perform(Runnable runnable) {
+		return new UnitTestActionAssertion<ActivityT>(testCase, activity, instrumentation, runnable, true);
 	}
 
 	public void isVisible() {
